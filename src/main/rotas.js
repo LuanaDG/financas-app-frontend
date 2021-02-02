@@ -14,3 +14,4 @@ function Rotas(){
 
   )
 }
+export default Rotas;
