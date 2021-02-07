@@ -1,10 +1,12 @@
-import React from 'react';
-import Card from '../components/card';
+import React from 'react'
+import Card from '../components/card'
 import FormGroup from '../components/form-group'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+
 import UsuarioService from '../app/service/usuarioService'
 import LocalStorageService from '../app/service/localstorageService'
-import { mensagemErro } from '../components/toastr';
+import { mensagemErro } from '../components/toastr'
+import { AuthContext  } from '../main/provedorAutenticacao'
 
 class Login extends React.Component {
 
@@ -23,8 +25,8 @@ class Login extends React.Component {
         this.service.autenticar({
             email: this.state.email,
             senha: this.state.senha
-        }).then(response => {
-            LocalStorageService.adicionarItem('_usuario_logado', response.data)    
+        }).then(response => {    
+            this.context.iniciarSessao(response.data)
             this.props.history.push('/home')
         }).catch(erro => {
             mensagemErro(erro.response.data)
@@ -77,4 +79,7 @@ class Login extends React.Component {
         )
     }
 }
+
+Login.contextType = AuthContext;
+
 export default withRouter (Login);
