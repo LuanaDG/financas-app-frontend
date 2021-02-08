@@ -11,4 +11,6 @@ Para subir a aplicação:
 
 Deve abrir no browser.\ [http://localhost:3000](http://localhost:3000) 
 
+https://financas-luana-app.herokuapp.com/
+
 
